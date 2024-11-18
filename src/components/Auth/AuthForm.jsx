@@ -246,23 +246,50 @@ const AuthForm = ({ activeTab, showPassword, setShowPassword }) => {
     setFormData((prevData) => ({ ...prevData, [id]: value }));
   };
 
+  // const handleLogin = (e) => {
+  //   e.preventDefault();
+  //   dispatch(loginUser({ email: formData.email, password: formData.password }));
+  // };
+
   const handleLogin = (e) => {
     e.preventDefault();
-    dispatch(loginUser({ email: formData.email, password: formData.password }));
+    dispatch(loginUser({ email: formData.email, password: formData.password }))
+      .unwrap()
+      .then(() => {
+        navigate('/disclaimer'); // Redirect to DisclaimerPage
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
+  
+
+  // const handleRegister = (e) => {
+  //   e.preventDefault();
+  //   dispatch(registerUser(formData))
+  //     .unwrap()
+  //     .then((data) => {
+  //       // Redirect to verify-otp page with userId
+  //       navigate(`/verify-otp?userId=${data.userId}`);
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //     });
+  // };
 
   const handleRegister = (e) => {
     e.preventDefault();
     dispatch(registerUser(formData))
       .unwrap()
       .then((data) => {
-        // Redirect to verify-otp page with userId
-        navigate(`/verify-otp?userId=${data.userId}`);
+        // Redirect to DisclaimerPage after successful registration
+        navigate('/disclaimer');
       })
       .catch((err) => {
         console.error(err);
       });
   };
+  
 
   const handleRoleChange = (e) => {
     setFormData((prevData) => ({ ...prevData, role: e.target.value }));

@@ -10,6 +10,7 @@ import AuthPage from './pages/AuthPage.jsx';
 import Verify_phone_OTP from './components/Verify_phone_Otp.jsx';
 import Question1 from './pages/Q&A.jsx';
 import AdvisorApplication from './pages/Application_form.jsx';
+import DisclaimerPage from './components/Auth/DisclaimerPage.jsx';
 // import EmailVerificationPage from './components/Auth/VerifyOTP.jsx';
 
 const router = createBrowserRouter([
@@ -37,6 +38,10 @@ const router = createBrowserRouter([
         path: "/application",
         element: <AdvisorApplication />
       },
+      {
+      path: "/disclaimer",
+      element: <DisclaimerPage /> // Add DisclaimerPage route
+    },
     ]
   }
 ]);

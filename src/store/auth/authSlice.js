@@ -172,10 +172,18 @@ const authSlice = createSlice({
         state.error = action.payload;
       })
       // Handle logoutUser
+      .addCase(logoutUser.pending, (state) => {
+        state.isLoading = true;
+      })
       .addCase(logoutUser.fulfilled, (state) => {
+        state.isLoading = false;
         state.user = null;
         state.accessToken = null;
         state.refreshToken = null;
+      })
+      .addCase(logoutUser.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload;
       })
       // Handle refreshAccessToken
       .addCase(refreshAccessToken.fulfilled, (state, action) => {
